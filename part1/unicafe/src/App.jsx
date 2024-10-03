@@ -39,9 +39,22 @@ const Statistics = (props) => {
   let n = props.neutralCount
   let b = props.badCount
   let total = g + n + b
-  let average = (total > 0) ? (g - b) / total : 0
-  let positivePercent = (total > 0) ? g / total * 100 : 0
+
   
+  if (total === 0) {
+    return (
+      <div>
+        <h1>
+          Statistics
+        </h1>
+        No feedback given
+      </div>
+    )
+  }
+
+  let average = (total > 0) ? (g - b) / total : 0 // zero safety isn't necessary after that if, but it still seems smart
+  let positivePercent = (total > 0) ? g / total * 100 : 0
+
   return(
     <div>
       <h1>
