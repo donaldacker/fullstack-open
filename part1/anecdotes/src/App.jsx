@@ -17,7 +17,6 @@ const App = () => {
   
   const zeroes = new Uint32Array(anecdotes.length)
   const [votes, setVotes] = useState(zeroes)
-  console.log(votes)
 
   const getRandInt = (max) => {
     return Math.floor(Math.random() * max)
@@ -33,14 +32,36 @@ const App = () => {
     setVotes(newVotes)
   }
 
+  const mostVotesIndex = () => {
+    let index = 0
+    let highest = 0
+    for (let i = 0; i < votes.length; i++) {
+      if (votes[i] > highest) {
+        highest = votes[i]
+        index = i
+      }
+    }
+    return index
+  }
+
   return (
     <div>
+      <h1>
+        Anecdote of the day
+      </h1>
       {anecdotes[selected]}
       <br />
       This quote has {votes[selected]} votes.
       <br />
       <Button text="Vote" handleClick={handleClickVote} />
       <Button text="Next anecdote" handleClick={handleClickNext} />
+      <h1>
+        Anecdote with most votes
+      </h1>
+      {anecdotes[mostVotesIndex()]}
+      <br />
+      This quote has {votes[mostVotesIndex()]} votes.
+
     </div>
   )
 }
