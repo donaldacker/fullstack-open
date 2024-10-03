@@ -37,6 +37,8 @@ const App = () => {
     <div>
       {anecdotes[selected]}
       <br />
+      This quote has {votes[selected]} votes.
+      <br />
       <Button text="Vote" handleClick={handleClickVote} />
       <Button text="Next anecdote" handleClick={handleClickNext} />
     </div>
