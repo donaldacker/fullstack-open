@@ -24,7 +24,7 @@ const Feedback = (props) => {
   return(
     <div>
       <h1>
-        give feedback
+        Give feedback
       </h1>
       <Button text="good" handleClick={props.handleGood} />
       <Button text="neutral" handleClick={props.handleNeutral} />
@@ -54,31 +54,28 @@ const Statistics = (props) => {
 
   let average = (total > 0) ? (g - b) / total : 0 // zero safety isn't necessary after that if, but it still seems smart
   let positivePercent = (total > 0) ? g / total * 100 : 0
+  let positive = positivePercent + " %"
 
   return(
     <div>
       <h1>
-        statistics
+        Statistics
       </h1>
-      <p>
-        good {g}
-      </p>
-      <p>
-        neutral {n}
-      </p>
-      <p>
-        bad {b}
-      </p>
-      <p>
-        all {total}
-      </p>
-      <p>
-        average {average}
-      </p>
-      <p>
-        positive {positivePercent}%
-      </p>
+      <StatisticLine name="good" number={g} />
+      <StatisticLine name="neutral" number={n} />
+      <StatisticLine name="bad" number={b} />
+      <StatisticLine name="total" number={total} />
+      <StatisticLine name="average" number={average} />
+      <StatisticLine name="positive" number={positive} />
     </div>
+  )
+}
+
+const StatisticLine = (props) => {
+  return(
+    <p>
+      {props.name} {props.number}
+    </p>
   )
 }
 
