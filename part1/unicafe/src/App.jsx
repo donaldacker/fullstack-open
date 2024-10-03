@@ -35,19 +35,35 @@ const Feedback = (props) => {
 }
 
 const Statistics = (props) => {
+  let g = props.goodCount
+  let n = props.neutralCount
+  let b = props.badCount
+  let total = g + n + b
+  let average = (total > 0) ? (g - b) / total : 0
+  let positivePercent = (total > 0) ? g / total * 100 : 0
+  
   return(
     <div>
       <h1>
         statistics
       </h1>
       <p>
-        good {props.goodCount}
+        good {g}
       </p>
       <p>
-        neutral {props.neutralCount}
+        neutral {n}
       </p>
       <p>
-        bad {props.badCount}
+        bad {b}
+      </p>
+      <p>
+        all {total}
+      </p>
+      <p>
+        average {average}
+      </p>
+      <p>
+        positive {positivePercent}%
       </p>
     </div>
   )
