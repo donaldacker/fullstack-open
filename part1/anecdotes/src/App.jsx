@@ -14,19 +14,31 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
 
+  
+  const zeroes = new Uint32Array(anecdotes.length)
+  const [votes, setVotes] = useState(zeroes)
+  console.log(votes)
+
   const getRandInt = (max) => {
     return Math.floor(Math.random() * max)
   }
 
-  const handleClick = () => {
+  const handleClickNext = () => {
     setSelected(getRandInt(anecdotes.length))
+  }
+
+  const handleClickVote = () => {
+    const newVotes = [...votes]
+    newVotes[selected] += 1
+    setVotes(newVotes)
   }
 
   return (
     <div>
       {anecdotes[selected]}
       <br />
-      <Button text="Next anecdote" handleClick={handleClick} />
+      <Button text="Vote" handleClick={handleClickVote} />
+      <Button text="Next anecdote" handleClick={handleClickNext} />
     </div>
   )
 }
